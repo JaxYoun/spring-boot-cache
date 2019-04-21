@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2019/3/22 00:09
  * @description: 打开cache功能
  */
-@EnableCaching
-@Configuration
+//@EnableCaching
+//@Configuration
 public class EmbedCacheConfig {
 }

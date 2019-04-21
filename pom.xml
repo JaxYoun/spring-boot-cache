@@ -42,6 +42,20 @@
 			<artifactId>ehcache</artifactId>
 		</dependency>
 
+		<!--guava依赖，这里主要用其cache功能-->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
+		<!--这是guava-cache被动引入的一个库-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.14.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
