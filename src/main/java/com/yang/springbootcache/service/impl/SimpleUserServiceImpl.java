@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class SimpleUserServiceImpl implements SimpleUserService {
 
     @Override
-
     public UserVO getUserById(UserDTO userDTO) {
         return null;
     }

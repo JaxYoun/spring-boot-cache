@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author: Yang
- * @date: 2019/3/22 00:01
+ * @date: 2019/4/21 22:38
  * @description:
  */
 @RestController
-@RequestMapping("/user")
-public class SimpleUserRest {
+@RequestMapping("/ehcache/user")
+public class EhcacheUserRest {
 
     /**
-     * 1.使用spring内置缓存，底层使用的是ConcurrentMapCacheManager容器来实现的，被缓存的类必须实现序列化接口Serializable
+     * 1.使用Ehcache缓存，被缓存的类必须实现序列化接口Serializable
      * 2.第一次使用http://localhost:8080/user/getUserById/1/yangjx请求，返回对象与前台属性一致。
      * 3.第二次请求id不变，更换name，返回结果的name字段仍然为第一次的旧值，表明第一次的对象被缓存了。
      * 4.第三次请求更换id，由于id被缓存用于对象的唯一标识，所以缓存中不存在就会新建一个，然后再缓存，此后相同id的请求都返回那个对象。
@@ -33,7 +33,7 @@ public class SimpleUserRest {
      * @return
      */
     @GetMapping("/getUserById/{id}/{name}")
-    @Cacheable(cacheNames = "simpleUserCache", key = "#id", condition = "#id < 100")
+    @Cacheable(cacheNames = "ehcachUserCache", key = "#id", condition = "#id < 100")
     public UserVO getUserById(@PathVariable Integer id, @PathVariable String name) {
         System.err.println("getUserById");
         return UserVO.builder().id(id).name(name).password("111111").build();
@@ -46,7 +46,7 @@ public class SimpleUserRest {
      * @return
      */
     @GetMapping("/removeUserById/{id}")
-    @CacheEvict(value = "simpleUserCache", key = "#id")
+    @CacheEvict(value = "ehcachUserCache", key = "#id")
     public boolean removeUserById(@PathVariable Integer id) {
         System.err.println("removeUserById");
         return true;
@@ -61,7 +61,7 @@ public class SimpleUserRest {
      * @return
      */
     @GetMapping("/updateUserById/{id}/{name}")
-    @CachePut(cacheNames = "simpleUserCache", key = "#id")
+    @CachePut(cacheNames = "ehcachUserCache", key = "#id")
     public UserVO updateUserById(@PathVariable Integer id, @PathVariable String name) {
         UserVO vo = UserVO.builder().id(id).name(name).password("111111").build();
         System.err.println("updateUserById");

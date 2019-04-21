@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache name="spring_boot_auto_ehcache">
+<ehcache>
+
     <diskStore path="java.io.tmpdir"/>
-    <cache name="CityService" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
+
+    <!-- 设定缓存的默认数据过期策略 -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU"/>
+
+    <!--针对业务范围定义缓存对象-->
+    <cache name="ehcachUserCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToIdleSeconds="10"/>
 </ehcache>
