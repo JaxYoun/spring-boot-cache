@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @date: 2019/4/21 23:03
  * @description: guava-cache配置
  */
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class GuavaCacheConfig {
 
     @Bean
